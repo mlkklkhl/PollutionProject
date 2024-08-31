@@ -1,15 +1,14 @@
+
+```
+ The `readme.md` file is used to provide the information about the project. It is written in markdown language. The content of the `readme.md` file is as follows:
+```
+
 # Data Preprocessing for Pollution Project
 
 ## Introduction
 The data used in this project are from two main sources:
 1. Weather Data from Thai Meteorological Department: directory `weather/raw_data`
 2. Pollution Data from Air4Thai: directory `PM2.5/raw_data`
-
-## Dependencies
-The dependencies are listed in the `requirements.txt` file. To install the dependencies, run the following command:
-```bash
-pip install -r requirements.txt
-```
 
 ## Data Preprocessing
 The data preprocessing is done in the following steps:
@@ -21,6 +20,12 @@ The data preprocessing is done in the following steps:
     - Finally, the main function combines both weather and pm2.5 data based on the date and time. The resulted file is named `combined_data.csv`.
 4. Data Cleaning: the data are cleaned by replacing the rows with missing values with interpolation technique. Moreover, it resample the data into hourly. This step is done in the `interpolate_data.py`. The resulted file is named `combined_data_upsampled_pm_1hour_final-all-spline.csv`.
 
+## Dependencies
+The dependencies are listed in the `requirements.txt` file. To install the dependencies, run the following command:
+```bash
+pip install -r requirements.txt
+```
+
 ## Usage
 To run the data preprocessing, run the following command:
 ```bash
@@ -29,9 +34,6 @@ python xlsxToCsvConverter.py
 python combine_data.py
 python interpolate_data.py
 ```
-
-## License
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
 ## Acknowledgements
 1. [Thai Meteorological Department](https://www.tmd.go.th/)
@@ -45,10 +47,8 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 2. [bukhoree](Bukhoree Sahoh)
 3. [apaporn](Apapon Tipsavak)
 
-
-```
- The `readme.md` file is used to provide the information about the project. It is written in markdown language. The content of the `readme.md` file is as follows:
-```
+## License
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
 
 
