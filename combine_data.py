@@ -4,7 +4,7 @@ import pandas as pd
 
 def combine_weather():
     # Merge all CSV files into a single DataFrame based on DateTime index and save it as a single CSV file
-    csv_files = glob.glob('prep_data/*.csv')
+    csv_files = glob.glob('weather/prep_data/*.csv')
     combined_data = pd.DataFrame()
 
     for csv_file in csv_files:
@@ -24,29 +24,18 @@ def combine_weather():
 
     return combined_data
 
-def xlsx_to_csv():
-    xlsx_files = glob.glob('PM2.5/*.xlsx')
-
-    for xlsx_file in xlsx_files:
-        print(f"Reading {xlsx_file}...")
-        read_file = pd.read_excel(xlsx_file)
-        csv_file = os.path.join('PM2.5', os.path.basename(xlsx_file).replace('.xlsx', '.csv'))
-        read_file.to_csv(csv_file, index=None, header=True)
-
 
 def combine_pm_air4thai():
-    xlsx_to_csv()
-
     combined_data = pd.DataFrame()
 
-    csv_files = glob.glob('PM2.5/*.csv')
+    csv_files = glob.glob('PM2.5/prep_data/*.csv')
 
     for csv_file in csv_files:
 
         print(f"Reading {csv_file}...")
         df = pd.read_csv(csv_file)
 
-        if csv_file != 'PM2.5\\PM2.5(2024).csv':
+        if csv_file != 'PM2.5\\prep_data\\PM2.5(2024).csv':
             # if the column 44T exists then rename it to PM2.5A
             if '44T ' in df.columns:
                 df = df.rename(columns={'44T ': '44T'})

@@ -126,12 +126,12 @@ def prep_dataframe(df, var, year):
 
 if __name__=="__main__":
     # find .mhtml file in raw_data folder
-    mhtml_files = glob.glob('raw_data/*.mhtml')
+    mhtml_files = glob.glob('weather/raw_data/*.mhtml')
 
     for mhtml_file in mhtml_files:
         print(f"Converting {mhtml_file} to CSV...")
 
-        csv_file = os.path.join('prep_data', os.path.basename(mhtml_file).replace('.mhtml', '.csv'))
+        csv_file = os.path.join('weather/prep_data', os.path.basename(mhtml_file).replace('.mhtml', '.csv'))
         mhtml_to_csv(mhtml_file, csv_file)
 
         df = pd.read_csv(csv_file)
