@@ -61,9 +61,9 @@ python interpolate_data.py
 
 1. [Thai Meteorological Department](https://www.tmd.go.th/)
 2. [Air4Thai](https://air4thai.pcd.go.th/)
-3. Bukhoree Sahoh (Leader)
-4. Mallika Kliangkhlao (Member)
-5. Apaporn Tipsavak (Member)
+3. Bukhoree Sahoh (Big Boss 🥦)
+4. Mallika Kliangkhlao (Member 🌼)
+5. Apaporn Tipsavak (Member 🪔)
 
 ## Contributors
 
