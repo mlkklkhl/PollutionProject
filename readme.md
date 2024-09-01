@@ -67,28 +67,15 @@ python interpolate_data.py
 
 ## Contributors
 
-<table style="border: none;">
-   <tr style="border: none;">
-      <td style="border: none;" align="center">
-         <a href="https://github.com/mlkklkhl">
-            <img src="https://github.com/mlkklkhl.png" style="border-radius: 50%;" width="60px;"/><br />
-            <sub>mlkklkhl</sub>
-         </a>
-      </td>
-      <td style="border: none;" align="center">
-         <a href="https://github.com/mlkklkhl">
-            <img src="https://github.com/mlkklkhl.png" style="border-radius: 50%;" width="60px;"/><br />
-            <sub>bukhoree</sub>
-         </a>
-      </td>
-      <td style="border: none;" align="center">
-         <a href="https://github.com/mlkklkhl">
-            <img src="https://github.com/mlkklkhl.png" style="border-radius: 50%;" width="60px;"/><br />
-            <sub>apaporn</sub>
-         </a>
-      </td>
-   </tr>
-</table>
+<a href="https://github.com/mlkklkhl">
+  <img src="https://github.com/mlkklkhl.png" alt="mlkklkhl" width="60" height="60" style="border-radius: 50%;">
+</a>
+<a href="https://github.com/bukhoree">
+  <img src="https://github.com/bukhoree.png" alt="bukhoree" width="60" height="60" style="border-radius: 50%;">
+</a>
+<a href="https://github.com/apaporn">
+  <img src="https://github.com/apaporn.png" alt="apaporn" width="60" height="60" style="border-radius: 50%;">
+</a>
 
 ## License
 
