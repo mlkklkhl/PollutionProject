@@ -68,13 +68,13 @@ python interpolate_data.py
 ## Contributors
 
 <a href="https://github.com/mlkklkhl">
-  <img src="https://github.com/mlkklkhl.png" alt="mlkklkhl" width="60" height="60" style="border-radius: 50%%;">
+  <img src="https://github.com/mlkklkhl.png" alt="mlkklkhl" width="60" height="60">
 </a>
 <a href="https://github.com/bukhoree">
-  <img src="https://github.com/bukhoree.png" alt="bukhoree" width="60" height="60" style="border-radius: 50%%;">
+  <img src="https://github.com/bukhoree.png" alt="bukhoree" width="60" height="60">
 </a>
 <a href="https://github.com/apaporn">
-  <img src="https://github.com/apaporn.png" alt="apaporn" width="60" height="60" style="border-radius: 50%%;">
+  <img src="https://github.com/apaporn.png" alt="apaporn" width="60" height="60">
 </a>
 
 ## License
