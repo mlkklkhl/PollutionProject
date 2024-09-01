@@ -35,7 +35,7 @@ def combine_pm_air4thai():
         print(f"Reading {csv_file}...")
         df = pd.read_csv(csv_file)
 
-        if csv_file != 'PM2.5\\prep_data\\PM2.5(2024).csv':
+        if csv_file != 'PM2.5/prep_data\PM2.5(2024).csv':
             # if the column 44T exists then rename it to PM2.5A
             if '44T ' in df.columns:
                 df = df.rename(columns={'44T ': '44T'})
@@ -48,7 +48,6 @@ def combine_pm_air4thai():
 
             # change 00:00 to 01:00
             df['DateTime'] = pd.to_datetime(df['Date'], format='%Y-%m-%d %H:%M:%S')
-            df['DateTime'] = df['DateTime'] + pd.DateOffset(hours=1)
             df = df[['DateTime', 'PM2.5A']]
 
         else:
@@ -74,18 +73,15 @@ def combine_pm_air4thai():
 
 
 if __name__ == "__main__":
-    # weather_data = combine_weather()
-    # pmA_data = combine_pm_air4thai()
+    weather_data = combine_weather()
+    pmA_data = combine_pm_air4thai()
 
-    weather_data = pd.read_csv('combined_weather_data.csv')
-    pmA_data = pd.read_csv('combined_pm2.5A_data.csv')
+    # print data description
+    print("Weather data description:")
+    print(weather_data.describe().to_string(), '\n')
 
-    # set index to DateTime
-    weather_data['DateTime'] = pd.to_datetime(weather_data['DateTime'])
-    weather_data.set_index('DateTime', inplace=True)
-
-    pmA_data['DateTime'] = pd.to_datetime(pmA_data['DateTime'])
-    pmA_data.set_index('DateTime', inplace=True)
+    print("PM2.5A data description:")
+    print(pmA_data.describe().to_string(), '\n')
 
     combined_data = pd.merge(weather_data, pmA_data, left_index=True, right_index=True, how='left')
     combined_data.to_csv('combined_data.csv')
