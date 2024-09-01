@@ -38,7 +38,7 @@ python interpolate_data.py
 ## Acknowledgements
 1. [Thai Meteorological Department](https://www.tmd.go.th/)
 2. [Air4Thai](https://air4thai.pcd.go.th/)
-3. Bukhoree Sahoh (Leader)
+3. Bukhoree Sahoh (Leader a.k.a Big Boss)
 4. Mallika Kliangkhlao (Member)
 5. Apaporn Tipsavak (Member)
 
