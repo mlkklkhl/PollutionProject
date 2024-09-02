@@ -36,7 +36,7 @@ The data preprocessing is done in the following steps:
       named `combined_data.csv`.
 4. Data Cleaning: the data are cleaned by replacing the rows with missing values with interpolation technique. Moreover,
    it resample the data into hourly. This step is done in the `interpolate_data.py`. The resulted file is
-   named `combined_data_upsampled_pm_1hour_final-all-spline.csv`.
+   named `combined_data_upsampled_pm_{{freq}}_{{interpolation_method}}_{{degree}}.csv`.
 
 ## Dependencies
 
