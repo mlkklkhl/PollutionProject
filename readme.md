@@ -73,8 +73,8 @@ python interpolate_data.py
 <a href="https://github.com/bukhoree">
   <img src="https://github.com/bukhoree.png" alt="bukhoree" width="60" height="60">
 </a>
-<a href="https://github.com/apaporn">
-  <img src="https://github.com/apaporn.png" alt="apaporn" width="60" height="60">
+<a href="https://github.com/Oilly687">
+  <img src="https://github.com/Oilly687.png" alt="apaporn" width="60" height="60">
 </a>
 
 ## License
