@@ -7,6 +7,10 @@ import re
 from bs4 import BeautifulSoup
 
 def mhtml_to_csv(mhtml_file, csv_file):
+
+    print(f"Processing MHTML file: {mhtml_file}")
+
+
     # Read the .mhtml file
     with open(mhtml_file, 'r', encoding='utf-8') as f:
         mhtml_content = f.read()
@@ -37,7 +41,7 @@ def mhtml_to_csv(mhtml_file, csv_file):
     with open(csv_file, 'w', newline='', encoding='utf-8') as f:
         writer = csv.writer(f)
 
-        if mhtml_file == 'raw_data\\rainfall 2016-2024.mhtml':
+        if os.path.basename(mhtml_file) == 'rainfall 2016-2024.mhtml':
             print("Rainfall")
             writer.writerow(
                 ['No', 'Station', 'Date', '01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12', '13',
@@ -77,6 +81,7 @@ def transform_date(date_str):
         # Return the date in the format "dd/mm/yyyy"
         return f"{day}/{month.zfill(2)}/{year}"
 
+
 def prep_dataframe(df, var, year):
     # Remove unnecessary columns
     df = df.drop(columns=['No', 'Station', 'Total'])
@@ -84,6 +89,8 @@ def prep_dataframe(df, var, year):
     if var == 'rainfall' and year == '2016-2024':
         # Get day slot columns
         day_slots = [col for col in df.columns if re.match(r'\d{2}', col)]
+        print("Day slots columns:", day_slots)
+
 
         # Melt the DataFrame
         df_melted = pd.melt(df, id_vars=['Date'], value_vars=day_slots, var_name='Day', value_name=var)
@@ -128,16 +135,20 @@ if __name__=="__main__":
     # find .mhtml file in raw_data folder
     mhtml_files = glob.glob('weather/raw_data/*.mhtml')
 
+    # Create prep_data folder if it doesn't exist
+    os.makedirs('weather/prep_data', exist_ok=True)
+
     for mhtml_file in mhtml_files:
         print(f"Converting {mhtml_file} to CSV...")
 
-        csv_file = os.path.join('weather/prep_data', os.path.basename(mhtml_file).replace('.mhtml', '.csv'))
+        csv_file = os.path.join('weather', 'prep_data', os.path.basename(mhtml_file).replace('.mhtml', '.csv'))
         mhtml_to_csv(mhtml_file, csv_file)
 
         df = pd.read_csv(csv_file)
 
         var = os.path.basename(mhtml_file).split(' ')[0]
         year = os.path.basename(mhtml_file).split(' ')[1].replace('.mhtml', '')
+        print(var, year)
         df_melted = prep_dataframe(df, var, year)
 
         df_melted.to_csv(csv_file, index=True)
