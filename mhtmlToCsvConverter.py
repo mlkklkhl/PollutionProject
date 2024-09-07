@@ -37,7 +37,7 @@ def mhtml_to_csv(mhtml_file, csv_file):
     with open(csv_file, 'w', newline='', encoding='utf-8') as f:
         writer = csv.writer(f)
 
-        if mhtml_file == 'raw_data\\rainfall 2016-2024.mhtml':
+        if mhtml_file == 'rainfall 2016-2024.mhtml':
             print("Rainfall")
             writer.writerow(
                 ['No', 'Station', 'Date', '01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12', '13',

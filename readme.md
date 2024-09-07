@@ -16,7 +16,8 @@
 The data used in this project are from two main sources:
 
 1. Weather Data from Thai Meteorological Department: directory `weather/raw_data`
-2. Pollution Data from Air4Thai: directory `PM2.5/raw_data`
+2. Pollution Data from Air4Thai: directory `PM2.5/raw_data` and `PM10/raw_data`
+3. Ultrafine Particle Data from Nanosampler: directory `PM0.1/raw_data`
 
 ## Data Preprocessing
 
@@ -25,16 +26,20 @@ The data preprocessing is done in the following steps:
 1. Weather Data Preprocessing: the data are .mhtml files that need to be converted to .csv files. This step is done in
    the `mhtmlToCsvConverter.py`. The resulted .csv files are stored in the `weather/prep_data` directory.
 2. Pollution Data Preprocessing: the data are .xlsx files that need to be converted to .csv files. This step is done in
-   the `xlsxToCsvConverter.py`. The resulted .csv files are stored in the `PM2.5/prep_data` directory.
-3. Merging Data: the weather and pollution data are merged based on the date and time. This step is done in
+   the `xlsxToCsvConverter.py`. The resulted .csv files are stored in the `PM2.5/prep_data` and `PM10/prep_data` directory.
+3. Ultrafine Particle Data Preprocessing: the data are .csv files that need to be converted to .csv files. This step is
+   done in the `xlsxSheetToCsvConverter.py`. The resulted .csv files are stored in the `PM0.1/prep_data` directory.
+4. Merging Data: the weather and pollution data are merged based on the date and time. This step is done in
    the `combine_data.py`. It has 3 main steps:
     - `combine_weather`: this function merges the weather data based on the date and time. This step combine and create
       a new .csv file named `combined_weather_data.csv`.
-    - `combine_pm_air4thai`: this function merges the pm2.5 data based on the date and time. This step combine and
-      create a new .csv file named `combined_pm2.5A_data.csv`.
+    - `combine_pm_air4thai`: this function merges the pm2.5 or pm10 data based on the date and time. This step combine and
+      create a new .csv file named `combined_pm2.5A_data.csv` or `combined_pm10A_data.csv`.
+    - `combine_nanosampler`: this function merges the pm0.1 data based on the date and time. This step combine and
+      create a new .csv file named `combined_{Site}_pm0.1_data.csv`.
     - Finally, the main function combines both weather and pm2.5 data based on the date and time. The resulted file is
       named `combined_data.csv`.
-4. Data Cleaning: the data are cleaned by replacing the rows with missing values with interpolation technique. Moreover,
+5. Data Cleaning: the data are cleaned by replacing the rows with missing values with interpolation technique. Moreover,
    it resample the data into hourly. This step is done in the `interpolate_data.py`. The resulted file is
    named `combined_data_upsampled_pm_{{freq}}_{{interpolation_method}}_{{degree}}.csv`.
 
@@ -68,13 +73,13 @@ python interpolate_data.py
 ## Contributors
 
 <a href="https://github.com/mlkklkhl">
-  <img src="https://github.com/mlkklkhl.png" alt="mlkklkhl" width="60" height="60">
+  <img src="https://github.com/mlkklkhl.png" alt="mlkklkhl" width="60" height="60" style="border-radius: 50%;">
 </a>
 <a href="https://github.com/bukhoree">
-  <img src="https://github.com/bukhoree.png" alt="bukhoree" width="60" height="60">
+  <img src="https://github.com/bukhoree.png" alt="bukhoree" width="60" height="60" style="border-radius: 50%;">
 </a>
 <a href="https://github.com/Oilly687">
-  <img src="https://github.com/Oilly687.png" alt="apaporn" width="60" height="60">
+  <img src="https://github.com/Oilly687.png" alt="apaporn" width="60" height="60" style="border-radius: 50%;">
 </a>
 
 ## License
