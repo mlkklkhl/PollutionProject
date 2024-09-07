@@ -3,7 +3,6 @@ import itertools
 import os
 import pandas as pd
 
-
 def combine_weather():
     # Merge all CSV files into a single DataFrame based on DateTime index and save it as a single CSV file
     csv_files = glob.glob('weather/prep_data/*.csv')
@@ -68,11 +67,14 @@ def combine_pm_air4thai(path):
             df = df[['DateTime', path]]
 
         else:
+            # rename 1st column to Date and 2nd column to Time
+            df = df.rename(columns={df.columns[1]: 'Date', df.columns[2]: 'Time'})
+            df = df.rename(columns={'pm2.5': path})
+
             # merge 2 and 3 columns into datetime using column index
             df['DateTime'] = df['Date'] + ' ' + df['Time']
             df['DateTime'] = pd.to_datetime(df['DateTime'], format='%Y-%m-%d %H:%M:%S')
 
-            df = df.rename(columns={'pm2.5': path})
             df = df[['DateTime', path]]
 
         # encode categorical data to float data type
