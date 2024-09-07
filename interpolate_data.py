@@ -1,5 +1,5 @@
 import pandas as pd
-import os, warnings
+import warnings
 
 warnings.simplefilter("ignore")
 
@@ -7,8 +7,7 @@ if __name__ == "__main__":
 
     # Set the frequency of the data
     # Work with '1H' for hourly data, '1D' for daily data, '1W' for weekly data
-    # **3H does not work because of the weather data is stamp at 1:00, 4:00, 7:00, 10:00, 13:00, 16:00, 19:00, 22:00
-    freq = '1H'
+    freq = '1D'
 
     # Set the interpolation method
     method = 'spline'
@@ -16,15 +15,16 @@ if __name__ == "__main__":
 
     # read the data
     df = pd.read_csv("combined_data.csv", encoding="utf8")
+    print(df.head())
 
     df['DateTime'] = pd.to_datetime(df['DateTime'], format='%Y-%m-%d %H:%M:%S')
     df.set_index('DateTime', inplace=True)
 
-    # remove duplicate rows
+    # # remove duplicate rows
     df = df[~df.index.duplicated(keep='first')]
 
     # resample the data
-    df = df.resample(freq).asfreq()
+    df = df.resample(freq).mean()
 
     print("Dataframe information: ")
     print(df.describe().to_string(), '\n')
@@ -45,7 +45,6 @@ if __name__ == "__main__":
         last = 0
 
         for ind in df[i].index:
-
             # check if the data is NaN
             if pd.isnull(df[i][ind]):
                 isNull_start = True
@@ -54,6 +53,7 @@ if __name__ == "__main__":
                 end = ind
             else:
                 start = ind
+                last = df[i][ind]
 
             # if the start and end index are found, interpolate the data
             if isNull_start:
@@ -75,22 +75,23 @@ if __name__ == "__main__":
                         start, end = ind, None
 
                         last = data_in.mean()
+
                     except:
                         continue
 
-                # if the last value in dataframe is still NaN, fill it with the last non-null value
+                # if the last value in dataframe is still NaN, fill data_in with the last non-null value
                 elif not isNull_end and ind == df[i].index[-1]:
-                    df[i].loc[start:end] = last
+                    data_in = df[i].loc[start:]
+                    data_in = data_in.fillna(last)
+                    df[i].loc[start:] = data_in
 
-            else: last = df[i][ind]
+df['Day'] = df.index.day
+df['Year'] = df.index.year
+df['Month'] = df.index.month_name()
 
-    df['Day'] = df.index.day
-    df['Year'] = df.index.year
-    df['Month'] = df.index.month_name()
+print("Interpolated Dataframe information: ")
+print(df.describe().to_string())
 
-    print("Interpolated Dataframe information: ")
-    print(df.describe().to_string())
+df.to_csv('combined_data_upsampled_pm_' + freq + '_' + method + '_' + str(deg) + 'degree.csv', index=True)
 
-    df.to_csv('combined_data_upsampled_pm_' + freq + '_' + method + '_' + str(deg) + 'degree.csv', index=True)
-
-    print('------- finish --------')
+print('------- finish --------')
