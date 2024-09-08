@@ -7,7 +7,7 @@ if __name__ == "__main__":
 
     # Set the frequency of the data
     # Work with '1H' for hourly data, '1D' for daily data, '1W' for weekly data
-    freq = '1D'
+    freq = '1H'
 
     # Set the interpolation method
     method = 'spline'
